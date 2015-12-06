@@ -1,0 +1,69 @@
+# php56
+
+- name: Install REMI repository
+  shell: rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+
+- name: Enable REMI repository
+  ini_file: dest=/etc/yum.repos.d/remi.repo
+            section=remi
+            option=enabled
+            value=1
+
+- name: Enable REMI-php56 repository
+  ini_file: dest=/etc/yum.repos.d/remi.repo
+            section=remi-php56
+            option=enabled
+            value=1
+
+#Start PHP packages
+- name: Install php
+  yum: name=php state=latest
+
+- name: Install php-devel
+  yum: name=php-devel state=latest
+
+- name: Install php-common
+  yum: name=php-common state=latest
+
+- name: Install php-cli
+  yum: name=php-cli state=latest
+
+- name: Install php-pear
+  yum: name=php-pear state=latest
+
+- name: Install php-pdo
+  yum: name=php-pdo state=latest
+
+- name: Install php-mysql
+  yum: name=php-mysql state=latest
+
+- name: Install php-gd
+  yum: name=php-gd state=latest
+
+- name: Install php-mbstring
+  yum: name=php-mbstring state=latest
+
+- name: Install php-mcrypt
+  yum: name=php-mcrypt state=latest
+
+- name: Install php-xml
+  yum: name=php-xml state=latest
+
+- name: Install php-bcmath
+  yum: name=php-bcmath state=latest
+#end PHP packages
+
+- name: Install nodejs
+  yum: name={{ item }} state=latest
+  with_flattened:
+        - npm
+
+#Entire html folders is not used, using "web" as the web root folder
+- shell: rm -rf /var/www/html
+
+#- name: Set the default Apache permisions for /var/www
+#  shell: chown -R apache:apache /var/www
+# This seemed to be causing problems after chaning Vagrant to use NFS
+
+- name: Restart httpd service now
+  shell: service httpd restart

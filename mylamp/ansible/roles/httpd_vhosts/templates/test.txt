@@ -1,0 +1,21 @@
+<VirtualHost *:80>
+
+    ServerName *
+
+
+    DocumentRoot "/var/www/web"
+
+#TODO
+#    ErrorLog /var/www/realtyhub-logs/error-dev.log
+#    CustomLog /var/www/realtyhub-logs/access-dev.log combined
+
+
+    <Directory /var/www/web>
+        DirectoryIndex index.htm index.html index.php
+        Options +Indexes +FollowSymLinks +MultiViews +Includes
+        AllowOverride All
+        Order allow,deny
+        allow from all
+    </Directory>
+
+</VirtualHost>

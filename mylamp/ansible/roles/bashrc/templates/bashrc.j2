@@ -1,0 +1,15 @@
+# .bashrc
+
+PATH=$PATH:/usr/local/bin:/usr/local/git/bin
+export PATH
+
+PS1='\[\e[0;32m\]\u\[\e[m\] @ \[\e[0;33m\]\h\[\e[m\] \[\e[1;31m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] \[\e[1;37m\]'
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+if [ -f /etc/bashrc ]; then
+. /etc/bashrc
+fi
+

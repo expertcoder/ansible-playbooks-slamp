@@ -1,0 +1,15 @@
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+config.vm.box_url = "https://vagrantcloud.com/perconajayj/boxes/centos-x86_64/versions/6.5.20140722/providers/virtualbox.box"
+config.vm.box = "perconajayj-centos-6.5"
+
+#If you change this IP address, dont forget to change the IP in the ansible host file
+config.vm.network "private_network", ip: "33.33.33.180"
+config.vm.network "public_network", ip: "192.168.1.180"
+
+config.vm.synced_folder ".", "/root/mylamp", type: "nfs"
+config.vm.synced_folder "/work/dnpassport", "/var/www", type: "nfs"
+
+end

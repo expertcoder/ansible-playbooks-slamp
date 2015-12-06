@@ -1,0 +1,3 @@
+- name: Add .bashrc
+  action: template src=bashrc.j2 dest=/root/.bashrc mode=644
+

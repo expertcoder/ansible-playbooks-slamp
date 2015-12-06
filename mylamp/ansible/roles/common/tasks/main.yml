@@ -1,0 +1,44 @@
+# common
+
+- name: Disable SE-Linux
+  shell: echo '0' > /selinux/enforce
+
+- name: Make sure .ssh folder is in place with correct permissions
+  file: path=/root/.ssh state=directory mode=0644
+
+- name: Install EPEL repository
+  yum: name=epel-release state=latest
+  when: hosting_company != "vagrant"
+  #Dont want to run this on the Vagrant machine, as the box comes with thi pre-installed.
+
+- name: Update system with latest packages and security fixes
+  yum: name=* state=latest
+
+- name: Install development tools via yum
+  yum: name={{ item }} state=latest
+  with_flattened:
+        - '@development'
+
+- name: Install common tools via yum (vim, git, tree, etc..)
+  yum: name={{ item }} state=latest
+  with_flattened:
+        - libselinux-python
+        - vim
+        - dstat
+        - wget
+        - mlocate
+        - git
+        - tree
+        - net-tools
+        - strace
+        - vixie-cron
+        - cronie
+
+- name: Add .vimrc
+  action: template src=vimrc.j2 dest=/root/.vimrc mode=644
+
+- name: Pernamently disable SE-Linux
+  action: template src=selinux-config.j2 dest=/etc/selinux/config mode=644
+
+- name: Set root password
+  action: user name=root password={{ root_password }}

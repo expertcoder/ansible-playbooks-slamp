@@ -1,0 +1,25 @@
+- name: Install Apache httpd packages
+  yum: name={{ item }} state=latest
+  with_flattened:
+        - httpd
+        - httpd-devel
+        - httpd-tools
+        - mod_ssl
+
+- name: Create /etc/httpd/vhosts
+  file: path=/etc/httpd/vhosts state=directory
+
+- name: Import httpd.conf
+  action: template src=httpd.conf.j2 dest=/etc/httpd/conf/httpd.conf mode=644
+
+- name: Allow port 80 (http) in the firewall
+  shell: lokkit -s http
+
+- name: Allow port 443 (https) in the firewalls
+  shell: lokkit -s https
+
+- name: Remove default Apache welcome page
+  shell: rm -rf /etc/httpd/conf.d/welcome.conf
+
+- name: Allow httpd to be started after reboot
+  shell: chkconfig httpd on

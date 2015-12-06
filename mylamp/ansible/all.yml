@@ -1,0 +1,57 @@
+# playbook: realtyhub.com.au
+
+- name: Install all necessary tools and set the environment ready
+  hosts: all
+  user: root
+
+  roles:
+    - common
+
+- name: setup .bashrc file
+  hosts: all
+  user: root
+
+  roles:
+    - bashrc
+
+- name: Install Apache web server and configure
+  hosts: all
+  user: root
+
+  roles:
+    - httpd
+
+- name: Install and configure PHP 5.6 with required extentions
+  hosts: all
+  user: root
+
+  roles:
+    - php56
+
+- name: PHP settings
+  hosts: all
+  user: root
+
+  roles:
+    - php_settings
+
+#- name: Install ImageMagick
+#  hosts: all
+#  user: root
+#
+#  roles:
+#    - image_magick
+
+- name: Install and configure MySQL
+  hosts: all
+  user: root
+
+  roles:
+    - mysql56
+
+#- name: Install Git2
+#  hosts: all
+#  user: root
+#
+#  roles:
+#    - git2
