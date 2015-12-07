@@ -9,6 +9,6 @@ config.vm.box = "perconajayj-centos-6.5"
 config.vm.network "private_network", ip: "33.33.33.180"
 config.vm.network "public_network", ip: "192.168.1.180"
 
-config.vm.synced_folder "/work/dnpassport", "/var/www", type: "nfs"
+config.vm.synced_folder "/work/dnpassport", "/var/www/application", type: "nfs"
 
 end
