@@ -1,3 +1,9 @@
+Ensure IP address and other settings in ````/mylamp/Vagrantfile```` are correct.
+
+Ensure IP address and other settings in ````/mylamp/ansible/host```` are correct.
+
+
+
 Run the ansible playbook with a command similar to
 
 ````
