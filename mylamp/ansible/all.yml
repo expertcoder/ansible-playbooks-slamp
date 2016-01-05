@@ -42,6 +42,13 @@
   roles:
     - mysql56
 
+- name: Install composer
+  hosts: all
+  user: root
+
+  roles:
+    - composer
+
 #This is disabled as Git may not be needed and this is slow to execute
 #- name: Install Git2
 #  hosts: all
