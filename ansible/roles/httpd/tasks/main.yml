@@ -21,5 +21,10 @@
 - name: Remove default Apache welcome page
   shell: rm -rf /etc/httpd/conf.d/welcome.conf
 
+#This will ensure the webroot folder exists. If you are using Vagrant
+#then there will be a mounted folder here, so there will be no need to create this folder
+- name: Make the web root folder if it does not exist
+  shell: mkdir -p /var/www/application/web
+
 - name: Allow httpd to be started after reboot
   shell: chkconfig httpd on
