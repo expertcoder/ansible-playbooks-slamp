@@ -1,0 +1,2 @@
+- name: replace the default ssl.conf with correct settings.
+  action: template src=ssl.conf.j2 dest=/etc/httpd/conf.d/ssl.conf mode=644
