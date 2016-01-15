@@ -90,7 +90,10 @@ SSLEngine on
 #   SSL Protocol support:
 # List the enable protocol levels with which clients will be able to
 # connect.  Disable SSLv2 access by default:
-SSLProtocol all -SSLv2
+#SSLProtocol all -SSLv2
+SSLProtocol all -SSLv2 -SSLv3
+# The "-SSLv3" was added to fix an error been reported by https://cryptoreport.websecurity.symantec.com/checker/views/certCheck.jsp
+# The error was "This server is vulnerable to: Poodle (SSLv3) This server is vulnerable to a Poodle (SSLv3) attack. If you have not disabled SSLv3 fallback support, disable it now and use TLS 1.2 or higher"
 
 #   SSL Cipher Suite:
 # List the ciphers that the client is permitted to negotiate.
