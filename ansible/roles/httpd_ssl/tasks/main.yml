@@ -2,7 +2,7 @@
   action: template src=ssl.conf.j2 dest=/etc/httpd/conf.d/ssl.conf mode=644
 
 - name: Copy CA bundle File (SSL)
-  action: template src=certificate.ca-bundle.j2 dest=/etc/pki/tls/certificate.ca-bundle mode=644
+  action: template src=certificate.ca-bundle.j2 dest=/etc/pki/tls/certs/certificate.ca-bundle mode=644
 
 - name: Copy Server Private Key File (SSL)
   action: template src=certificate.key.j2 dest=/etc/pki/tls/private/certificate.key mode=644
