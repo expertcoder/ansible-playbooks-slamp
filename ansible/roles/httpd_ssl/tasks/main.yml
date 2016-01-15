@@ -6,3 +6,6 @@
 
 - name: Copy Server Private Key File (SSL)
   action: template src=certificate.key.j2 dest=/etc/pki/tls/private/certificate.key mode=644
+
+- name: restart apache
+  shell: service httpd restart

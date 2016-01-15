@@ -21,6 +21,14 @@
   roles:
     - httpd
 
+- name: Setup apache SSL
+  hosts: all
+  user: root
+
+  roles:
+    - role: httpd_ssl
+      tags: ['ssl']
+
 - name: Install and configure PHP 5.6 with required extentions
   hosts: all
   user: root

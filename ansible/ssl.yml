@@ -1,6 +1,0 @@
-- name: Do SSL
-  hosts: all
-  user: root
-
-  roles:
-    - httpd_ssl
