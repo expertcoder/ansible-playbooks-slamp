@@ -100,6 +100,10 @@ SSLProtocol all -SSLv2 -SSLv3
 # See the mod_ssl documentation for a complete list.
 SSLCipherSuite DEFAULT:!EXP:!SSLv2:!DES:!IDEA:!SEED:+3DES
 
+#NOTE: SSLCertificateFile, SSLCertificateKeyFile and SSLCertificateChainFile directives were modified based off articles
+# https://support.comodo.com/index.php?/Default/Knowledgebase/Article/View/637/37/certificate-installation-apache--mod_ssl
+# https://wiki.centos.org/HowTos/Https
+
 #   Server Certificate:
 # Point SSLCertificateFile at a PEM encoded certificate.  If
 # the certificate is encrypted, then you will be prompted for a
