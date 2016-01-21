@@ -1,4 +1,4 @@
-# playbook
+# MyLamp playbook
 
 - name: Install all necessary tools and set the environment ready
   hosts: all
