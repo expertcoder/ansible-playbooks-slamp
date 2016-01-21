@@ -65,3 +65,12 @@
   roles:
     - role: git2
       tags: ['git2']
+
+
+- name: Setup Git repo auth (deploy keys)
+  hosts: all
+  user: root
+
+  roles:
+    - role: repo_auth
+      tags: ['repo']
