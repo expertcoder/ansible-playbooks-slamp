@@ -1,0 +1,12 @@
+#NOTE: this playbook was written specifically for Bitbucket but you may be able to adapt it to Github easily
+#You will need to log into bitbucket and install the deployment keys there
+#https://confluence.atlassian.com/bitbucket/use-deployment-keys-294486051.html
+
+- name: setup bit bucket deployment key (private key file)
+  action: template src=sshkey.gitprovider-deploy.j2 dest=~/.ssh/gitprovider-deploy mode=600
+
+#techincally this public key is not needed on the server, but might as well copy it anyway
+- name: setup bit bucket deployment key (public key file)
+  action: template src=sshkey.gitprovider-deploy.pub.j2 dest=~/.ssh/gitprovider-deploy.pub mode=600
+
+
