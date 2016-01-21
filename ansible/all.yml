@@ -57,10 +57,11 @@
   roles:
     - composer
 
-#This is disabled as Git may not be needed and this is slow to execute
-#- name: Install Git2
-#  hosts: all
-#  user: root
-#
-#  roles:
-#    - git2
+#You may chose to disable the installion of Git2 if its not needed as the installation takes a while.
+- name: Install Git2
+  hosts: all
+  user: root
+
+  roles:
+    - role: git2
+      tags: ['git2']
