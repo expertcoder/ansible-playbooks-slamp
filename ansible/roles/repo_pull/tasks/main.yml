@@ -1,6 +1,9 @@
 #This playbook was written for bitbucket, hopefully it works for github
 #for the "repo" please set this to the path of the repo. Note that an SSH alias is not needed as the ssh key is been specified
 #NOTE: you would not normally want this to run on vagrant, as this folder will be the mounted folder.
+- name: delete intended repo folder if it exists
+  file: path=/var/www/application state=absent
+
 - name: clone or pull git repo
   git: repo=git@[[EDIT]].git
        dest=/var/www/application
