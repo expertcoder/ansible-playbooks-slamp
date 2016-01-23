@@ -2,3 +2,6 @@ hosting_company: other
 ansible_ssh_port: 22
 ansible_ssh_host: [[EDIT]]
 ansible_ssh_private_key_file: [[EDIT]]
+repo_enabled: true
+repo_source: git@[[EDIT]].git
+repo_dest_path: /var/www/application

@@ -2,3 +2,6 @@ hosting_company: vagrant
 ansible_ssh_port: 22
 ansible_ssh_host: 33.33.33.[[EDIT]]
 ansible_ssh_private_key_file: /Users/samanthony/.vagrant.d/insecure_private_key
+repo_enabled: false
+repo_source: na
+repo_dest_path: na

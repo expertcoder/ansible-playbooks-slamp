@@ -64,7 +64,7 @@
 
   roles:
     - role: git2
-      tags: ['git2','repo']
+      tags: ['git2']
 
 
 - name: Setup Git repo auth (deploy keys)
@@ -72,7 +72,7 @@
   user: root
 
   roles:
-    - role: repo_auth
+    - role: repo_prep
       tags: ['repo']
 
 - name: Clone or pull git repo
