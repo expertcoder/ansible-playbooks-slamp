@@ -14,6 +14,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.network "private_network", ip: "33.33.33.[[EDIT]]"
     config.vm.network "public_network", ip: "192.168.1.[[EDIT]]"
 
-    config.vm.synced_folder "/work/[[EDIT]]", "/var/www/application", type: "nfs"
+    config.vm.synced_folder "/work/[[EDIT]]/application", "/var/www/application", type: "nfs"
 
 end
