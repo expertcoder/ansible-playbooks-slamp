@@ -5,3 +5,4 @@ ansible_ssh_private_key_file: /Users/samanthony/.vagrant.d/insecure_private_key
 repo_enabled: false
 repo_source: na
 repo_dest_path: na
+symcore_env: dev

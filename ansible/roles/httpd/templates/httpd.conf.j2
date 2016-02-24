@@ -95,6 +95,8 @@ ServerAdmin root@localhost
 UseCanonicalName Off
 
 DocumentRoot "/var/www/application/web"
+SetEnv SYMCORE_ENV {{ symcore_env }}
+
 
 <Directory />
     Options FollowSymLinks
