@@ -16,4 +16,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.synced_folder "/work/[[EDIT]]/application", "/var/www/application", type: "nfs"
 
+    #[[EDIT]] suggested synced folders for Symcore applications
+    #config.vm.synced_folder "/work/[[EDIT]]/dynamic-files", "/var/www/dynamic-files", type: "nfs"
+    #Symcore applciations will put composer/vendor files in "dynamic-files" folder.
+    #The advantage of making this a synced folder is all the vendor files will be available to view on the host machine
+    #Also if "vagrant destroy" is ran, the vendor files will be preserved as they reside on the host machine
+
+
 end
