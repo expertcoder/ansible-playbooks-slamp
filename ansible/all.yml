@@ -57,6 +57,20 @@
   roles:
     - composer
 
+- name: Install Phing
+  hosts: all
+  user: root
+
+  roles:
+    - phing
+
+- name: Install shortcut scripts
+  hosts: all
+  user: root
+
+  roles:
+    - shortcut_scripts
+
 #You may chose to disable the installion of Git2 if its not needed as the installation takes a while.
 - name: Install Git2
   hosts: all

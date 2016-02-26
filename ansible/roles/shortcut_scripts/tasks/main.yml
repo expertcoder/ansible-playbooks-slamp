@@ -1,0 +1,5 @@
+- name: copy shortcut script (symcon)
+  action: template src=symcon.j2 dest=/usr/local/bin/symcon mode=755
+
+- name: copy shortcut script (composer)
+  action: template src=composer.j2 dest=/usr/local/bin/composer mode=755
