@@ -1,7 +1,7 @@
-#Installs composer. code taken from https://github.com/Vinelab/ansible-composer/blob/master/tasks/main.yml
+#Installs composer. code adapted from https://github.com/Vinelab/ansible-composer/blob/master/tasks/main.yml
 
 - name: install composer
-  shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin creates=/usr/local/bin/composer
+  shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin creates=/usr/local/bin/composer.phar
   tags: composer
 
 - name: make composer executable

@@ -1,4 +1,4 @@
 #Installs Phing
 
 - name: installs "Phing"
-  get_url: url=http://www.phing.info/get/phing-latest.phar  dest=/usr/local/bin/phing mode=0644
+  get_url: url=http://www.phing.info/get/phing-latest.phar  dest=/usr/local/bin/phing-latest.phar mode=0755
