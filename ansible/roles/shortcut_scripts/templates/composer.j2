@@ -1,3 +1,4 @@
 #!/bin/bash
 #Shortcut to run "composer.phar". PHP is been invoked with a huge memory limit as sometimes there is memory problems with composer.
-php -d memory_limit=2048M composer.phar $@
+cd /var/www/application
+php -d memory_limit=2048M /usr/local/bin/composer.phar $@
