@@ -5,5 +5,5 @@
   tags: composer
 
 - name: make composer executable
-  file: path=/usr/local/bin/composer mode=a+x state=file
+  file: path=/usr/local/bin/composer.phar mode=a+x state=file
   tags: composer
