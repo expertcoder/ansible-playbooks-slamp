@@ -1,0 +1,6 @@
+<Directory "/var/www/application/web">
+  AuthType Basic
+  AuthName "Authentication Required"
+  AuthUserFile "/etc/htpasswd/.htpasswd"
+  Require valid-user
+</Directory>
