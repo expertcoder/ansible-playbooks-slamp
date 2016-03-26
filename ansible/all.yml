@@ -51,6 +51,13 @@
   roles:
     - role: php_settings
 
+- name: Xdebug
+  hosts: all
+  user: root
+
+  roles:
+    - role: xdebug
+
 - name: Install and configure MySQL
   hosts: all
   user: root

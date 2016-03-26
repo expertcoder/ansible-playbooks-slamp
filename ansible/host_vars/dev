@@ -6,3 +6,5 @@ repo_enabled: false
 repo_source: na
 repo_dest_path: na
 symfony_env: dev
+xdebug_enabled: true
+xdebug_profiler_output_dir: /var/www/shared-files/xdebug

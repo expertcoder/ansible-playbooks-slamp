@@ -6,3 +6,5 @@ repo_enabled: true
 repo_source: git@[[EDIT]].git
 repo_dest_path: /var/www/application
 symfony_env: prod
+xdebug_enabled: false
+xdebug_profiler_output_dir: na

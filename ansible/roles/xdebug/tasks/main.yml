@@ -1,0 +1,15 @@
+- name: install xdebug
+  shell: pecl install --force xdebug
+  when: xdebug_enabled
+
+- name: create folder for xdebug outout
+  file: path={{ xdebug_profiler_output_dir }} state=directory mode=0755
+  when: xdebug_enabled
+
+- name: Install custom xedbug.ini file
+  action: template src=xdebug.ini.j2 dest=/etc/php.d/xdebug.ini mode=644
+  when: xdebug_enabled
+
+- name: Restart Apache
+  service: name=httpd state=restarted
+  when: xdebug_enabled
