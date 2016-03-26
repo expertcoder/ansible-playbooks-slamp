@@ -64,12 +64,6 @@
   yum: name=php-stats state=latest
 #end PHP packages
 
-
-#TODO need to install memcache, and the PHP extention
-#http://www.liquidweb.com/kb/how-to-install-memcached-on-centos-7/
-#http://www.liquidweb.com/kb/how-to-install-the-memcached-php-extension-on-centos-7/
-#make sure that memcache starts automattically.
-
 - name: Install nodejs
   yum: name=npm state=latest
 

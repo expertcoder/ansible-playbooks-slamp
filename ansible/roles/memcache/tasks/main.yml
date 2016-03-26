@@ -1,3 +1,6 @@
+#http://www.liquidweb.com/kb/how-to-install-memcached-on-centos-7/
+#http://www.liquidweb.com/kb/how-to-install-the-memcached-php-extension-on-centos-7/
+
 - name: Install memcache
   yum: name=memcached state=latest
 
