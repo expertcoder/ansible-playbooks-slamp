@@ -1,32 +1,26 @@
-# As a quick work aroung, just install git with yum. This might install an old version
-- name: installing default git version
-  yum: name=git state=latest
-
-
 # This is based off instructions here http://tecadmin.net/install-git-2-0-on-centos-rhel-fedora/
-
-#- name: install required packages for git2
-#  yum: name={{ item }} state=latest
-#  with_flattened:
-#        - curl-devel
-#        - expat-devel
-#        - gettext-devel
-#        - openssl-devel
-#        - zlib-devel
-#        - gcc
-#        - perl-ExtUtils-MakeMaker
-#        - perl-devel
+- name: install required packages for git2
+  yum: name={{ item }} state=latest
+  with_flattened:
+        - curl-devel
+        - expat-devel
+        - gettext-devel
+        - openssl-devel
+        - zlib-devel
+        - gcc
+        - perl-ExtUtils-MakeMaker
+        - perl-devel
 #perl-devel suggested here http://madcoda.com/2013/09/cant-locate-extutilsmakemaker-pm-while-compile-git/
 
-#- name: remove existing git if it is there
-#  yum: name=git state=absent
-#
-#- name: fetch git2 archive to install
-#  get_url: url=https://www.kernel.org/pub/software/scm/git/git-2.3.5.tar.gz  dest=/usr/tmp/git-2.tar.gz mode=0644
-#
-#- name: expand git2 archive
-#  unarchive: src=/usr/tmp/git-2.tar.gz dest=/usr/tmp copy=no
-#
-#- name: complie (make) git2
-#  shell: cd /usr/tmp/git-2.3.5; make prefix=/usr/local/git all
-#  shell: cd /usr/tmp/git-2.3.5; make prefix=/usr/local/git install
+- name: remove existing git if it is there
+  yum: name=git state=absent
+
+- name: fetch git2 archive to install
+  get_url: url=https://www.kernel.org/pub/software/scm/git/git-2.7.0.tar.gz dest=/usr/tmp/git-2.tar.gz
+
+- name: expand git2 archive
+  unarchive: src=/usr/tmp/git-2.tar.gz dest=/usr/tmp copy=no
+
+- name: complie (make) git2
+  shell: cd /usr/tmp/git-2.7.0; make prefix=/usr/local/git all
+  shell: cd /usr/tmp/git-2.7.0; make prefix=/usr/local/git install

@@ -4,10 +4,7 @@
 - name: clone or pull git repo
   git: repo={{ repo_source }}
        dest={{ repo_dest_path }}
-       executable=/usr/bin/git/git
-       #TODO - sort this out when we sort out git1/git2
-#       executable=/usr/bin/git/git   (default git 1.8)
-#       executable=/usr/local/git/bin/git    (complied git 2)
+       executable=/usr/local/git/bin/git
        accept_hostkey=true
        force=yes
        key_file=/root/.ssh/gitprovider-deploy
