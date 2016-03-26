@@ -23,10 +23,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.synced_folder "/work/[[EDIT]]/application", "/var/www/application", type: "nfs"
 
-    config.vm.synced_folder "/work/[[EDIT]]/dynamic-files", "/var/www/dynamic-files", type: "nfs"
     #Symcore applications will put composer/vendor files in "dynamic-files" folder.
     #The advantage of making this a synced folder is all the vendor files will be available to view on the host machine
     #Also if "vagrant destroy" is ran, the vendor files will be preserved as they reside on the host machine
+    config.vm.synced_folder "/work/[[EDIT]]/dynamic-files", "/var/www/dynamic-files", type: "nfs"
 
+    #shared-files folder is a convient way to share files between the host and the virtual machine. Memcache places files here.
+    config.vm.synced_folder "/work/[[EDIT]]/shared-files", "/var/www/shared-files", type: "nfs"
 
 end
