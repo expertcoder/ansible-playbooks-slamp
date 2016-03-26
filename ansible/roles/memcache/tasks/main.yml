@@ -1,0 +1,11 @@
+- name: Install memcache
+  yum: name=memcached state=latest
+
+- name: Install memcache for PHP
+  yum: name=php-pecl-memcache state=latest
+
+- name: make memcache service start on boot
+  service: name=memcached state=restarted enabled=yes
+
+- name: Restart Apache
+  service: name=httpd state=restarted

@@ -58,6 +58,15 @@
   roles:
     - role: mysql56
 
+- name: Installl memcache
+  hosts: all
+  user: root
+
+  roles:
+    - role: memcache
+      tags: ['memcache']
+
+
 - name: Install composer
   hosts: all
   user: root
