@@ -1,25 +1,25 @@
-# MyLamp playbook
+# Mylamp playbook
 
 - name: Install all necessary tools and set the environment ready
   hosts: all
   user: root
 
   roles:
-    - common
+    - role: common
 
 - name: setup .bashrc file
   hosts: all
   user: root
 
   roles:
-    - bashrc
+    - role: bashrc
 
 - name: Install Apache web server and configure
   hosts: all
   user: root
 
   roles:
-    - httpd
+    - role: httpd
 
 - name: Setup apache SSL
   hosts: all
@@ -42,35 +42,35 @@
   user: root
 
   roles:
-    - php56
+    - role: php56
 
 - name: PHP settings
   hosts: all
   user: root
 
   roles:
-    - php_settings
+    - role: php_settings
 
 - name: Install and configure MySQL
   hosts: all
   user: root
 
   roles:
-    - mysql56
+    - role: mysql56
 
 - name: Install composer
   hosts: all
   user: root
 
   roles:
-    - composer
+    - role: composer
 
 - name: Install Phing
   hosts: all
   user: root
 
   roles:
-    - phing
+    - role: phing
 
 - name: Install shortcut scripts
   hosts: all

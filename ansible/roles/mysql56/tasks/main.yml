@@ -1,7 +1,7 @@
 # mysql56
 
 - name: Install MySQL community release repository
-  shell: rpm -Uvh http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm
+  yum: name=http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm state=present
 
 - name: Install mysql56 packages
   yum: name={{ item }} state=latest
@@ -12,15 +12,13 @@
         - mysql-community-devel
         - mysql-community-bench
 
-- name: Allow mysqld to be started after reboot
-  shell: chkconfig mysqld on
-
 - name: Start mysqld now!
-  shell: service mysqld start
+  service: name=mysqld state=started enabled=true
 
 - name: Update mysql root password for all root accounts
   mysql_user: name=root host=localhost password="{{ mysql_password }}"
 
+#This will setup so when you run "mysql" from the terminal, you are not asked for the password
 - name: Add .my-password.cnf to /root/.my.cnf
   action: template src=my-password.cnf.j2 dest=/root/.my.cnf
-  #Sam's Notes: This will setup so when you run "mysql" from the terminal, you are not asked for the password
+

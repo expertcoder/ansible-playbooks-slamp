@@ -13,18 +13,17 @@
   action: template src=httpd.conf.j2 dest=/etc/httpd/conf/httpd.conf mode=644
 
 - name: Allow port 80 (http) in the firewall
-  shell: lokkit -s http
+  firewalld: service=http permanent=true state=enabled immediate=true
 
 - name: Allow port 443 (https) in the firewalls
-  shell: lokkit -s https
+  firewalld: service=https permanent=true state=enabled immediate=true
 
 - name: Remove default Apache welcome page
-  shell: rm -rf /etc/httpd/conf.d/welcome.conf
+  file: path=/etc/httpd/conf.d/welcome.conf state=absent
 
 #This will ensure the webroot folder exists. If you are using Vagrant
 #then there will be a mounted folder here, so there will be no need to create this folder
 - name: Make the web root folder if it does not exist
-  shell: mkdir -p /var/www/application/web
+  file: path=/var/www/application/web state=directory
 
-- name: Allow httpd to be started after reboot
-  shell: chkconfig httpd on
+- service: name=httpd enabled=yes

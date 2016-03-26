@@ -1,7 +1,15 @@
 # php56
 
+#https://support.rackspace.com/how-to/install-epel-and-additional-repositories-on-centos-and-red-hat/
+- name: install EPEL
+  yum: name=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+#https://webtatic.com/packages/php56/
+- name: install Webtatic EL
+  yum: name=https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
+
 - name: Install REMI repository
-  shell: rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+  yum: name=http://rpms.famillecollet.com/enterprise/remi-release-7.rpm state=present
 
 - name: Enable REMI repository
   ini_file: dest=/etc/yum.repos.d/remi.repo
@@ -51,19 +59,22 @@
 
 - name: Install php-bcmath
   yum: name=php-bcmath state=latest
+
+- name: Install php-stats
+  yum: name=php-stats state=latest
 #end PHP packages
 
+
+#TODO need to install memcache, and the PHP extention
+#http://www.liquidweb.com/kb/how-to-install-memcached-on-centos-7/
+#http://www.liquidweb.com/kb/how-to-install-the-memcached-php-extension-on-centos-7/
+#make sure that memcache starts automattically.
+
 - name: Install nodejs
-  yum: name={{ item }} state=latest
-  with_flattened:
-        - npm
+  yum: name=npm state=latest
 
-#Entire html folders is not used, using "web" as the web root folder
-- shell: rm -rf /var/www/html
+- name: removing html folders which is not used
+  file: path=/var/www/html state=absent
 
-#- name: Set the default Apache permisions for /var/www
-#  shell: chown -R apache:apache /var/www
-# This seemed to be causing problems after chaning Vagrant to use NFS
-
-- name: Restart httpd service now
-  shell: service httpd restart
+- name: Restart Apache
+  service: name=httpd state=restarted

@@ -1,7 +1,7 @@
 # common
 
 - name: Disable SE-Linux
-  shell: echo '0' > /selinux/enforce
+  selinux: state=disabled
 
 - name: Make sure .ssh folder is in place with correct permissions
   file: path=/root/.ssh state=directory mode=0644
@@ -31,14 +31,9 @@
         - tree
         - net-tools
         - strace
-        - vixie-cron
-        - cronie
 
 - name: Add .vimrc
   action: template src=vimrc.j2 dest=/root/.vimrc mode=644
-
-- name: Pernamently disable SE-Linux
-  action: template src=selinux-config.j2 dest=/etc/selinux/config mode=644
 
 - name: Set root password
   action: user name=root password={{ root_password }}

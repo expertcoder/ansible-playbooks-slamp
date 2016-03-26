@@ -1,8 +1,8 @@
 - name: install python-passlib needed for ansible htpasswd module
   yum: name=python-passlib state=latest
 
-- name: Remove bsic auth passowrd file if it exists
-  shell: rm -rf /etc/htpasswd/.htpasswd
+- name: Remove basic auth passowrd file if it exists
+  file: path=/etc/htpasswd/.htpasswd state=absent
 
 - name: Create basic auth password file
   htpasswd: create=yes state=present path=/etc/htpasswd/.htpasswd name={{ basic_auth_user }} password={{ basic_auth_password }}

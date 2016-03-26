@@ -1,3 +1,5 @@
+#TODO - these SSL scripts have not been tested on centos7/apache2.4
+
 - name: replace the default ssl.conf with correct settings (SSL)
   action: template src=ssl.conf.j2 dest=/etc/httpd/conf.d/ssl.conf mode=644
 
@@ -7,5 +9,5 @@
 - name: Copy Server Private Key File (SSL)
   action: template src=certificate.key.j2 dest=/etc/pki/tls/private/certificate.key mode=644
 
-- name: restart apache
-  shell: service httpd restart
+- name: Restart Apache
+  service: name=httpd state=restarted
