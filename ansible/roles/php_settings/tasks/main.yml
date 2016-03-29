@@ -1,5 +1,5 @@
-- name: Install custom mylamp.ini file
-  action: template src=mylamp.ini.j2 dest=/etc/php.d/mylamp.ini mode=644
+- name: Install custom slamp.ini file
+  action: template src=slamp.ini.j2 dest=/etc/php.d/slamp.ini mode=644
 
 - name: Restart Apache
   service: name=httpd state=restarted

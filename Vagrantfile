@@ -10,7 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.box = "perconajayj-centos-7.1"
 
     config.vm.provider :virtualbox do |vb|
-        vb.name = "mylamp_[[EDIT]]"
+        vb.name = "slamp_[[EDIT]]"
         #Set the name that the machine will have in the VirtualBox Desktop interface
     end
 
