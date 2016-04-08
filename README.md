@@ -2,7 +2,7 @@
 
 Please see full documentation at https://github.com/expertcoder/slamp/wiki
 
-SLAMP is a set of ansible playbooks which can easily provision a LAMP server with a common configuration so you can get your new server up and running quickly. The S stands for Symfony, as I often use this repository for Symfony applications, but it works great for any PHP application.
+SLAMP is a set of ansible playbooks which can easily provision a LAMP server with a common configuration so you can get your new server up and running quickly. The S in SLAMP stands for Symfony, it got this name as I often use this repository for Symfony applications, but it works great for any PHP application.
 
 The Ansible Playbook can provision a vagrant/virtual box or any other suitable hosting environment.
 
