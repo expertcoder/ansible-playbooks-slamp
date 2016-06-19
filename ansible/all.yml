@@ -120,3 +120,11 @@
   roles:
     - role: repo_pull
       tags: ['repo']
+
+- name: Install wkhtmltopdf
+  hosts: all
+  user: root
+
+  roles:
+    - role: wkhtmltopdf
+      tags: ['wkhtml']

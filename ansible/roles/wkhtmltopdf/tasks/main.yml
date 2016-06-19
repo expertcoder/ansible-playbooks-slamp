@@ -1,0 +1,13 @@
+#https://jaimegris.wordpress.com/2015/03/04/how-to-install-wkhtmltopdf-in-centos-7-0/
+
+- name: install prerequisites for wkhtmltopdf
+  yum: name=xorg-x11-fonts-75dpi state=latest
+
+- name: install prerequisites for wkhtmltopdf
+  yum: name=xorg-x11-fonts-Type1 state=latest
+
+- name: Download wkhtmltox
+  get_url: url=http://download.gna.org/wkhtmltopdf/0.12/0.12.2/wkhtmltox-0.12.2_linux-centos7-amd64.rpm dest=/usr/tmp/wkhtmltox-0.12.2_linux-centos7-amd64.rpm mode=0755
+
+- name: install wkhtmltox
+  yum: name=/usr/tmp/wkhtmltox-0.12.2_linux-centos7-amd64.rpm state=present
