@@ -4,7 +4,7 @@
 - name: clone or pull git repo
   git: repo={{ repo_source }}
        dest={{ repo_dest_path }}
-       executable=/usr/local/git/bin/git
+       executable=/usr/bin/git
        accept_hostkey=true
        force=yes
        key_file=/root/.ssh/gitprovider-deploy

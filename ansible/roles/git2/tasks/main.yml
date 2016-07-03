@@ -21,6 +21,8 @@
 - name: expand git2 archive
   unarchive: src=/usr/tmp/git-2.tar.gz dest=/usr/tmp copy=no
 
-- name: complie (make) git2
-  shell: cd /usr/tmp/git-2.7.0; make prefix=/usr/local/git all
-  shell: cd /usr/tmp/git-2.7.0; make prefix=/usr/local/git install
+- name: complie (make) git2 (all)
+  shell: cd /usr/tmp/git-2.7.0; make prefix=/usr all
+
+- name: complie (make) git2 (install)
+  shell: cd /usr/tmp/git-2.7.0; make prefix=/usr install
