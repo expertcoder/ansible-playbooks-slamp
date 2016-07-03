@@ -1,14 +1,16 @@
 #http://www.liquidweb.com/kb/how-to-install-memcached-on-centos-7/
 #http://www.liquidweb.com/kb/how-to-install-the-memcached-php-extension-on-centos-7/
 
-- name: Install memcache
-  yum: name=memcached state=latest
+#TODO - has not been updated to work with PHP 7
 
-- name: Install memcache for PHP
-  yum: name=php-pecl-memcache state=latest
+#- name: Install memcache
+#  yum: name=memcached state=latest
 
-- name: make memcache service start on boot
-  service: name=memcached state=restarted enabled=yes
+#- name: Install memcache for PHP
+#  yum: name=php-pecl-memcache state=latest
 
-- name: Restart Apache
-  service: name=httpd state=restarted
+#- name: make memcache service start on boot
+#  service: name=memcached state=restarted enabled=yes
+
+#- name: Restart Apache
+#  service: name=httpd state=restarted

@@ -1,0 +1,82 @@
+# php7
+
+#https://support.rackspace.com/how-to/install-epel-and-additional-repositories-on-centos-and-red-hat/
+- name: install EPEL
+  yum: name=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+# for PHP 7 https://webtatic.com/packages/php70/
+- name: install Webtatic EL
+  yum: name=https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
+
+- name: Install REMI repository
+#  yum: name=http://rpms.famillecollet.com/enterprise/7/php70/x86_64/php-pecl-yar-2.0.1-1.el7.remi.7.0.x86_64.rpm state=present
+  yum: name=http://rpms.famillecollet.com/enterprise/remi-release-7.rpm state=present
+
+- name: Enable REMI repository
+  ini_file: dest=/etc/yum.repos.d/remi.repo
+            section=remi
+            option=enabled
+            value=1
+
+#- name: Enable REMI-php56 repository
+#  ini_file: dest=/etc/yum.repos.d/remi.repo
+#            section=remi-php56
+#            option=enabled
+#            value=1
+
+
+#Start PHP packages
+- name: Install php70w
+  yum: name=php70w state=latest
+
+- name: Install php70w-opcache
+  yum: name=php70w-opcache state=latest
+
+- name: Install php70w-devel
+  yum: name=php70w-devel state=latest
+
+- name: Install php70w-common
+  yum: name=php70w-common state=latest
+
+- name: Install php70w-cli
+  yum: name=php70w-cli state=latest
+
+- name: Install php70w-pear
+  yum: name=php70w-pear state=latest
+
+- name: Install php70w-pdo
+  yum: name=php70w-pdo state=latest
+
+- name: Install php70w-mysql
+  yum: name=php70w-mysql state=latest
+
+- name: Install php70w-gd
+  yum: name=php70w-gd state=latest
+
+- name: Install php70w-mbstring
+  yum: name=php70w-mbstring state=latest
+
+- name: Install php70w-mcrypt
+  yum: name=php70w-mcrypt state=latest
+
+- name: Install php70w-xml
+  yum: name=php70w-xml state=latest
+
+- name: Install php70w-bcmath
+  yum: name=php70w-bcmath state=latest
+
+#Cant seem to get stats to work this PHP7 at the moment
+#- name: Install php-stats
+#  yum: name=php-stats state=latest
+
+
+#end PHP packages
+
+- name: Install nodejs
+  yum: name=npm state=latest
+
+- name: removing html folders which is not used
+  file: path=/var/www/html state=absent
+
+- name: Restart Apache
+  service: name=httpd state=restarted

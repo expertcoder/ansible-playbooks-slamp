@@ -1,4 +1,4 @@
-# Mylamp playbook
+# SLAMP playbook
 
 - name: Install all necessary tools and set the environment ready
   hosts: all
@@ -37,12 +37,12 @@
     - role: httpd_basic_auth
       tags: ['basic_auth']
 
-- name: Install and configure PHP 5.6 with required extentions
+- name: Install and configure PHP7 with required extentions
   hosts: all
   user: root
 
   roles:
-    - role: php56
+    - role: php7
 
 - name: PHP settings
   hosts: all
