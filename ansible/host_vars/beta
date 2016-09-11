@@ -1,4 +1,6 @@
 mysql_host: [[EDIT]]
+mysql_install_server: true
+
 hosting_company: [[EDIT]]
 
 ansible_ssh_port: 22
