@@ -1,0 +1,22 @@
+<VirtualHost *:80>
+
+    ServerName {{ api_domain }}
+
+    SetEnv SYMFONY_ENV {{ symfony_env }}
+
+    DocumentRoot "/var/www/symfony/web"
+    ServerAdmin [[EDIT]]
+
+    #ErrorLog /var/www/logs/error-api.log
+    #CustomLog /var/www/logs/access-api.log combined
+
+
+    <Directory /var/www/symfony/web>
+    DirectoryIndex index.htm index.html index.php
+    Options +Indexes +FollowSymLinks +MultiViews +Includes
+    AllowOverride All
+    Order allow,deny
+    allow from all
+    </Directory>
+
+</VirtualHost>

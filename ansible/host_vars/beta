@@ -1,10 +1,30 @@
-hosting_company: other
+mysql_host: [[EDIT]]
+hosting_company: [[EDIT]]
+
 ansible_ssh_port: 22
 ansible_ssh_host: [[EDIT]]
-ansible_ssh_private_key_file: [[EDIT]]
+ansible_ssh_private_key_file: ~/.ssh/[[EDIT]]
+
+#[[EDIT]] Extra things needed if you are using Google Cloud
+#ansible_ssh_common_args: '-o HostKeyAlgorithms=ecdsa-sha2-nistp256'
+#ansible_ssh_user: ~
+
 repo_enabled: true
-repo_source: git@[[EDIT]].git
-repo_dest_path: /var/www/application
+repo_symfony_source: [[EDIT]]
+repo_symfony_dest_path: /var/www/symfony
+repo_symfony_branch: master
+repo_front_source: [[EDIT]]
+repo_front_dest_path: /var/www/front
+repo_front_branch: master
+
 symfony_env: beta
+
 xdebug_enabled: false
 xdebug_profiler_output_dir: na
+
+api_domain: [[EDIT]]
+front_domain: [[EDIT]]
+sym_domain: [[EDIT]]
+
+basic_auth_user: [[EDIT]]
+basic_auth_password: [[EDIT]]

@@ -1,17 +1,21 @@
-#NOTE: this playbook was written specifically for Bitbucket but will hopefully work with github
-#You will need to log into bitbucket interface and install the deployment keys there
+#You will need to log into bitbucket/Github interface and install the deployment keys there
 #https://confluence.atlassian.com/bitbucket/use-deployment-keys-294486051.html
 
-- name: setup git provider deployment key (private key file)
-  action: template src=sshkey.gitprovider-deploy.j2 dest=~/.ssh/gitprovider-deploy mode=600
+#techincally this public key is not needed on the server but will copy it anyway
+- name: setup git provider deployment key
+  action: template src={{ item }}.j2 dest=~/.ssh/{{ item }} mode=600
+  when: repo_enabled
+  with_items:
+    - gitprovider.front.deploy
+    - gitprovider.front.deploy.pub
+    - gitprovider.symfony.deploy
+    - gitprovider.symfony.deploy.pub
+
+- name: delete intended repo folder if it exists (Symfony)
+  file: path={{ repo_symfony_dest_path }} state=absent
   when: repo_enabled
 
-#techincally this public key is not needed on the server, but might as well copy it anyway
-- name: setup git provider deployment key (public key file)
-  action: template src=sshkey.gitprovider-deploy.pub.j2 dest=~/.ssh/gitprovider-deploy.pub mode=600
-  when: repo_enabled
-
-- name: delete intended repo folder if it exists
-  file: path={{ repo_dest_path }} state=absent
+- name: delete intended repo folder if it exists (front)
+  file: path={{ repo_front_dest_path }} state=absent
   when: repo_enabled
 

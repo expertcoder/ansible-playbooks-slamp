@@ -1,7 +1,14 @@
 # mysql56
 
+#NOTE: With google cloud, we are using a decicated MySQL instance, so only install the MySQL client
+
+- name: Install MySQL client only
+  yum: name=mysql state=present
+  when: hosting_company == "google_cloud"
+
 - name: Install MySQL community release repository
   yum: name=http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm state=present
+  when: hosting_company != "google_cloud"
 
 - name: Install mysql56 packages
   yum: name={{ item }} state=latest
@@ -11,14 +18,17 @@
         - mysql-community-libs
         - mysql-community-devel
         - mysql-community-bench
+  when: hosting_company != "google_cloud"
 
 - name: Start mysqld now!
   service: name=mysqld state=started enabled=true
+  when: hosting_company != "google_cloud"
 
 - name: Update mysql root password for all root accounts
   mysql_user: name=root host=localhost password="{{ mysql_password }}"
+  when: hosting_company != "google_cloud"
 
 #This will setup so when you run "mysql" from the terminal, you are not asked for the password
-- name: Add .my-password.cnf to /root/.my.cnf
-  action: template src=my-password.cnf.j2 dest=/root/.my.cnf
+- name: setup /root/.my.cnf
+  action: template src=my.cnf.j2 dest=/root/.my.cnf
 

@@ -1,3 +1,13 @@
+#NOTE: this will only create password file to actually make basic auth start to work, you will
+#need to place a .htaccess file in the folder you want to protect.
+
+#this .htaccess file should be something like
+# AuthType Basic
+# AuthName "Authentication Required"
+# AuthUserFile "/etc/htpasswd/.htpasswd"
+# Require valid-user
+
+
 - name: install python-passlib needed for ansible htpasswd module
   yum: name=python-passlib state=latest
 
@@ -7,5 +17,5 @@
 - name: Create basic auth password file
   htpasswd: create=yes state=present path=/etc/htpasswd/.htpasswd name={{ basic_auth_user }} password={{ basic_auth_password }}
 
-- name: setup basic auth in apache
-  action: template src=basic-auth.conf.j2 dest=/etc/httpd/conf.d/basic-auth.conf mode=644
+#- name: setup basic auth in apache
+#  action: template src=basic-auth.conf.j2 dest=/etc/httpd/conf.d/basic-auth.conf mode=644

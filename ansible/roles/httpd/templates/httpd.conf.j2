@@ -116,8 +116,7 @@ ServerAdmin root@localhost
 # documents. By default, all requests are taken from this directory, but
 # symbolic links and aliases may be used to point to other locations.
 #
-DocumentRoot "/var/www/application/web"
-SetEnv SYMFONY_ENV {{ symfony_env }}
+DocumentRoot "/var/www/symfony/web"
 
 #
 # Relax access to content within /var/www.
@@ -129,7 +128,7 @@ SetEnv SYMFONY_ENV {{ symfony_env }}
 </Directory>
 
 # Further relax access to the default document root:
-<Directory "/var/www/application/web">
+<Directory "/var/www/symfony/web">
     #
     # Possible values for the Options directive are "None", "All",
     # or any combination of:
@@ -352,3 +351,12 @@ EnableSendfile on
 #
 # Load config files in the "/etc/httpd/conf.d" directory, if any.
 IncludeOptional conf.d/*.conf
+
+<VirtualHost *:80>
+  <Location />
+    Order deny,allow
+    Deny from all
+  </Location>
+</VirtualHost>
+
+Include vhosts/*.conf

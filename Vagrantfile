@@ -21,7 +21,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #this disable the default builtin synced folder
     config.vm.synced_folder ".", "/vagrant", disabled: true
 
-    config.vm.synced_folder "/work/[[EDIT]]/application", "/var/www/application", type: "nfs"
+    config.vm.synced_folder "/work/[[EDIT]]/symfony", "/var/www/symfony", type: "nfs"
+    config.vm.synced_folder "/work/[[EDIT]]/front", "/var/www/front", type: "nfs"
 
     #Symcore applications will put composer/vendor files in "dynamic-files" folder.
     #The advantage of making this a synced folder is all the vendor files will be available to view on the host machine

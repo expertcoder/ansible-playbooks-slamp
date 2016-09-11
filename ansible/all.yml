@@ -20,6 +20,7 @@
 
   roles:
     - role: httpd
+      tags: ['httpd']
 
 - name: Setup apache SSL
   hosts: all
@@ -36,6 +37,14 @@
   roles:
     - role: httpd_basic_auth
       tags: ['basic_auth']
+
+- name: Setup virtual hosts
+  hosts: all
+  user: root
+
+  roles:
+    - role: httpd_vhosts
+      tags: ['vhosts']
 
 - name: Install and configure PHP7 with required extentions
   hosts: all
@@ -64,6 +73,7 @@
 
   roles:
     - role: mysql56
+      tags: ['mysql']
 
 - name: Installl memcache
   hosts: all
@@ -93,7 +103,8 @@
   user: root
 
   roles:
-    - shortcut_scripts
+    - role: shortcut_scripts
+      tags: ['shortcut_scripts']
 
 #You may chose to disable the installion of Git2 if its not needed as the installation takes a while.
 - name: Install Git2

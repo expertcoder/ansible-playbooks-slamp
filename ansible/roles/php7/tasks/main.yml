@@ -64,6 +64,12 @@
 
 - name: Install php70w-bcmath
   yum: name=php70w-bcmath state=latest
+
+#Cant seem to get stats to work this PHP7 at the moment
+#- name: Install php-stats
+#  yum: name=php-stats state=latest
+
+
 #end PHP packages
 
 - name: Install nodejs

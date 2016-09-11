@@ -1,0 +1,21 @@
+<VirtualHost *:80>
+
+    ServerName {{ front_domain }}
+
+    SetEnv SYMFONY_ENV {{ symfony_env }}
+
+    DocumentRoot "/var/www/front/web"
+    ServerAdmin [[EDIT]]
+
+    #ErrorLog /var/www/logs/error-front.log
+    #CustomLog /var/www/logs/access-front.log combined
+
+    <Directory /var/www/front/web>
+    DirectoryIndex index.htm index.html index.php
+    Options +Indexes +FollowSymLinks +MultiViews +Includes
+    AllowOverride All
+    Order allow,deny
+    allow from all
+    </Directory>
+
+</VirtualHost>

@@ -12,6 +12,18 @@
 - name: Import httpd.conf
   action: template src=httpd.conf.j2 dest=/etc/httpd/conf/httpd.conf mode=644
 
+- name: Install firewalld package
+  yum: pkg=firewalld state=present
+
+#NOTE: Playbook may fail somewhere around here
+# manually setup firewall
+# firewall-cmd --add-service=http --permanent
+# firewall-cmd --add-service=https --permanent
+# service firewalld restart
+
+- name: Ensure firewalld is running and enabled on boot
+  service: name=firewalld state=started enabled=yes
+
 - name: Allow port 80 (http) in the firewall
   firewalld: service=http permanent=true state=enabled immediate=true
 
@@ -24,6 +36,12 @@
 #This will ensure the webroot folder exists. If you are using Vagrant
 #then there will be a mounted folder here, so there will be no need to create this folder
 - name: Make the web root folder if it does not exist
-  file: path=/var/www/application/web state=directory
+  file: path=/var/www/symfony/web state=directory
+
+- name: Make the web root folder if it does not exist (for the front virtual host)
+  file: path=/var/www/front/web state=directory
+
+- name: Make the web apache log folder if it does not exist
+  file: path=/var/www/logs state=directory
 
 - service: name=httpd enabled=yes

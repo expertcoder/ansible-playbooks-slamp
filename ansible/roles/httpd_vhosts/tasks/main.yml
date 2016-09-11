@@ -1,0 +1,23 @@
+- name: copy apache virtual host files
+  template:
+    src={{ item }}.conf.j2
+    dest=/etc/httpd/vhosts/{{ item }}.conf
+  with_items:
+    - api
+    - sym
+    - front
+
+- name: Make webroot folders, just to keep apache happy for the moment
+  file: path=/var/www/symfony/web state=directory mode=0644
+
+- name: Make webroot folders, just to keep apache happy for the moment
+  file: path=/var/www/front/web state=directory mode=0644
+
+- name: Make apache logs folder (This is referenced from the virtual hosts later
+  file: path=/var/www/logs/ state=directory mode=0644
+
+- name: Restart Apache
+  service: name=httpd state=restarted
+
+- name: Add this servers own host name to /etc/hosts (needed for functional tests)
+  lineinfile: dest=/etc/hosts  line='127.0.0.1 {{ api_domain }}' state=present

@@ -1,5 +1,6 @@
 # common
 
+
 - name: Disable SE-Linux
   selinux: state=disabled
 
@@ -24,6 +25,7 @@
   with_flattened:
         - libselinux-python
         - vim
+        - nano
         - dstat
         - wget
         - mlocate
