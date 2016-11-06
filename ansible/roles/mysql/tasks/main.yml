@@ -4,11 +4,11 @@
 
 - name: Install MySQL client only
   yum: name=mysql state=present
-  when: hosting_company == "google_cloud"
+  when: not mysql_install_server
 
 - name: Install MySQL community release repository
   yum: name=http://repo.mysql.com/mysql57-community-release-el7-9.noarch.rpm state=present
-  when: hosting_company != "google_cloud"
+  when: mysql_install_server
 
 - name: Install mysql packages
   yum: name={{ item }} state=latest
@@ -18,29 +18,20 @@
         - mysql-community-libs
         - mysql-community-devel
         - mysql-community-bench
-  when: hosting_company != "google_cloud"
+  when: mysql_install_server
+
+- name: disable validate-password plugin
+  vars:
+    myCnfLine: 'validate-password=off #Disable this plugin, it was really annoying in dev environment, was forcing password to be set and the password policy was also relly strict'
+  lineinfile: dest=/etc/my.cnf regexp="^validate-password.*" line={{myCnfLine}} state=present
 
 - name: Start mysqld now!
   service: name=mysqld state=started enabled=true
-  when: hosting_company != "google_cloud"
-
-#TODO - PROBLEM HERE
-#Sam - 1st November 2016
-#I recent updated to mysql 5.7, which  now required a password to access mysql
-#So this ansible command just below fails as the correct password is not been used.
-#MySQL installs with a temp password. You can get this temp password with a command like this
-#
-# grep 'temporary password' /var/log/mysqld.log | awk '{print $NF}'
-#
-# with that password you are able to manually run "mysql -pthepassword" and then change the password with SQL command like
-#
-#ALTER USER 'root'@'localhost' IDENTIFIED BY 'aBc!123!';
-#Note the password policy required a complicated password, I don't know what it is
-# you will also need to ensure /root/.my.cnf ends up with the correct password
+  when: mysql_install_server
 
 - name: Update mysql root password for all root accounts
   mysql_user: name=root host=localhost password="{{ mysql_password }}"
-  when: hosting_company != "google_cloud"
+  when: mysql_install_server
 
 #This will setup so when you run "mysql" from the terminal, you are not asked for the password
 - name: setup /root/.my.cnf
