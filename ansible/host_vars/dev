@@ -1,3 +1,5 @@
+apache_server_admin_email: [[EDIT]]
+
 mysql_host: localhost
 mysql_install_server: true
 

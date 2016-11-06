@@ -5,7 +5,7 @@
     SetEnv SYMFONY_ENV {{ symfony_env }}
 
     DocumentRoot "/var/www/symfony/web"
-    ServerAdmin [[EDIT]]
+    ServerAdmin {{ apache_server_admin_email }}
 
     #ErrorLog /var/www/logs/error-api.log
     #CustomLog /var/www/logs/access-api.log combined
