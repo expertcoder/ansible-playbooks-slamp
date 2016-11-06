@@ -30,3 +30,5 @@ sym_domain: [[EDIT]]
 
 basic_auth_user: [[EDIT]]
 basic_auth_password: [[EDIT]]
+basic_auth_front_vhost: false
+basic_auth_api_vhost: false

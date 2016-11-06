@@ -72,7 +72,7 @@
   user: root
 
   roles:
-    - role: mysql56
+    - role: mysql
       tags: ['mysql']
 
 - name: Installl memcache

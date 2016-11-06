@@ -8,13 +8,13 @@
     - front
 
 - name: Make webroot folders, just to keep apache happy for the moment
-  file: path=/var/www/symfony/web state=directory mode=0644
+  file: path=/var/www/symfony/web state=directory mode=0755
 
 - name: Make webroot folders, just to keep apache happy for the moment
-  file: path=/var/www/front/web state=directory mode=0644
+  file: path=/var/www/front/web state=directory mode=0755
 
-- name: Make apache logs folder (This is referenced from the virtual hosts later
-  file: path=/var/www/logs/ state=directory mode=0644
+- name: Make apache logs folder (This is referenced from the virtual hosts later)
+  file: path=/var/www/logs/ state=directory mode=0755
 
 - name: Restart Apache
   service: name=httpd state=restarted

@@ -17,6 +17,13 @@
     AllowOverride All
     Order allow,deny
     allow from all
+    {% if basic_auth_api_vhost %}
+        #Basic Auth Stuff
+        AuthType Basic
+        AuthName "Authentication Required"
+        AuthUserFile "/etc/htpasswd/.htpasswd"
+        Require valid-user
+    {% endif %}
     </Directory>
 
 </VirtualHost>

@@ -36,6 +36,3 @@
 
 - name: Add .vimrc
   action: template src=vimrc.j2 dest=/root/.vimrc mode=644
-
-- name: Set root password
-  action: user name=root password={{ root_password }}

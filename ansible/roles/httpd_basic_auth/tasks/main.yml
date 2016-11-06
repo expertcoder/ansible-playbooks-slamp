@@ -1,6 +1,8 @@
-#NOTE: this will only create password file to actually make basic auth start to work, you will
-#need to place a .htaccess file in the folder you want to protect.
-
+#NOTE: this will only create password file to actually make basic auth start to work.
+# However there are other things you will need to do to make Basic Auth work.
+# You can use the ansible variables basic_auth_front_vhost and basic_auth_api_vhost
+#
+# Or you could place an .htaccess file inside the folder you would like to protect
 #this .htaccess file should be something like
 # AuthType Basic
 # AuthName "Authentication Required"
@@ -16,6 +18,3 @@
 
 - name: Create basic auth password file
   htpasswd: create=yes state=present path=/etc/htpasswd/.htpasswd name={{ basic_auth_user }} password={{ basic_auth_password }}
-
-#- name: setup basic auth in apache
-#  action: template src=basic-auth.conf.j2 dest=/etc/httpd/conf.d/basic-auth.conf mode=644
