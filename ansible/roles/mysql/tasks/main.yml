@@ -1,6 +1,7 @@
-# mysql56
-
-#NOTE: With google cloud, we are using a decicated MySQL instance, so only install the MySQL client
+#NOTE: if you are using an external MySQL server, and you only want to install the MySQL client, then use the ansible variable mysql_install_server=false
+# You should pass ansible variable mysql_password at runtime.
+# when mysql_install_server=false, you should pass the existing password of the mysql server
+# when mysql_install_server=true, pass the new desired password
 
 - name: Install MySQL client only
   yum: name=mysql state=present
@@ -17,23 +18,36 @@
         - mysql-community-server
         - mysql-community-libs
         - mysql-community-devel
-        - mysql-community-bench
+  when: mysql_install_server
+
+
+#NOTE: there are two reasons why it is important to start MySQL here (and later restart)
+# starting mysql will cause the temporary password to be output in the mysql log
+# also, when attempting to disable the mysql Password Validation Plugin (using validate-password=off)
+# this only seems to work if mysql has been started at least once before
+- name: Start mysqld now
+  service: name=mysqld state=started enabled=true
   when: mysql_install_server
 
 - name: disable validate-password plugin
   vars:
-    myCnfLine: 'validate-password=off #Disable this plugin, it was really annoying in dev environment, was forcing password to be set and the password policy was also relly strict'
+    myCnfLine: 'validate-password=off {{ "#" }} Disable Password Validation Plugin as the password policy is too strict for development environment'
   lineinfile: dest=/etc/my.cnf regexp="^validate-password.*" line={{myCnfLine}} state=present
-
-- name: Start mysqld now!
-  service: name=mysqld state=started enabled=true
   when: mysql_install_server
 
-- name: Update mysql root password for all root accounts
-  mysql_user: name=root host=localhost password="{{ mysql_password }}"
+- name: restart mysql
+  service: name=mysqld state=restarted
+  when: mysql_install_server
+
+- name: extract the new mysql temporary password from log file
+  shell: grep 'temporary password' /var/log/mysqld.log | awk '{print $NF}'
+  register: temporaryPasswordResponse
+  when: mysql_install_server
+
+- name: update mysql root password
+  shell: mysql -uroot --connect-expired-password --password={{ temporaryPasswordResponse.stdout | quote }} -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '{{ mysql_password | quote }}';"
   when: mysql_install_server
 
 #This will setup so when you run "mysql" from the terminal, you are not asked for the password
 - name: setup /root/.my.cnf
   action: template src=my.cnf.j2 dest=/root/.my.cnf
-
