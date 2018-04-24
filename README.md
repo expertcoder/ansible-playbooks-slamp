@@ -1,3 +1,5 @@
+![Freelance Banner](https://s3.eu-central-1.amazonaws.com/static.expertcoder.io/github-banner/banner.png)
+
 ## SLAMP Server
 
 Please see full documentation at [Repo wiki page](https://github.com/expertcoder/ansible-playbooks-slamp/wiki)
